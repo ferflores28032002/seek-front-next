@@ -27,14 +27,15 @@ const Footer = () => {
               </div>
 
               <div className="text-center relative mx-auto max-w-sm">
-                <h3 className="font-semibold text-gray-900 dark:text-white">
-                  CON LA CONFIANZA DE DESARROLLADORES Y LÍDERES EN INNOVACIÓN
-                  TECNOLÓGICA
+                <h3 className="font-semibold text-gray-900 dark:text-white uppercase">
+                  Con Seek, cada tarea importa. Organiza, supervisa y alcanza
+                  tus metas con facilidad.
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Liberar el poder del desarrollo tecnológico en América Latina.
+                  Haz que cada tarea cuente con Seek y alcanza tus metas
+                  fácilmente.
                   <Link
-                    href="/users"
+                    href="/login"
                     className="whitespace-nowrap font-medium text-black hover:text-zinc-900 dark:text-gray-200"
                   >
                     {""}
@@ -49,7 +50,8 @@ const Footer = () => {
         <div className="py-10 md:flex md:items-center md:justify-between">
           <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} All Rights Reserved
+              &copy; {new Date().getFullYear()} Seek todos los derechos
+              reservados.
             </p>
           </div>
 
@@ -59,19 +61,19 @@ const Footer = () => {
                 href="#"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
-                Terms
+                Terminos
               </Link>
               <Link
                 href="#"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
-                Privacy Policy
+                Privacidad
               </Link>
               <Link
                 href="#"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
-                Cookie Policy
+                Cookies
               </Link>
             </div>
           </div>

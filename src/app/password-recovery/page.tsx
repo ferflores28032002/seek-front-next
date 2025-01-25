@@ -34,7 +34,7 @@ const Page = () => {
         <div className="flex flex-col items-center space-y-2 text-center">
           <Icons.logo className="h-20 w-20" />
           <h1 className="text-2xl font-semibold tracking-tight">
-            Enviar correo de recuperación
+            Recuperación de contraseña
           </h1>
         </div>
 

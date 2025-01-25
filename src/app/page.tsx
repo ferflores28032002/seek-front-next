@@ -9,24 +9,23 @@ export default function Home() {
     <MaxWidthWrapper>
       <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-          Tu solución para la gestión &nbsp;
+          Gestiona tus tareas fácilmente&nbsp;
           <span className="text-blue-600" id="cypress-title-home">
-            eficiente de tareas
+            con seek
           </span>
         </h1>
         <p
           className="mt-6 text-lg max-w-prose text-muted-foreground"
           id="cypress-description-home"
         >
-          ¡Tu herramienta todo-en-uno para organizar, priorizar y gestionar tus
-          tareas! Nuestra plataforma te ayuda a mantener el control de tus
-          proyectos, optimizar tu tiempo y alcanzar tus metas de manera
-          eficiente. Conéctate, colabora y supervisa tus progresos en tiempo
-          real, todo desde un solo lugar. ¡Di adiós al caos y hola a la
-          productividad!
+          ¡Descubre cómo organizar y supervisar tus pendientes nunca fue tan
+          fácil! Con Seek, puedes visualizar tus tareas, actualizarlas en
+          diferentes estados y mantener todo bajo control. Una app diseñada para
+          ayudarte a priorizar, completar tus objetivos y simplificar tu vida,
+          sin complicaciones.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-6">
-          <Link href="/login" className={buttonVariants()}>
+          <Link href="/register" className={buttonVariants()}>
             Registrate &rarr;
           </Link>
         </div>
