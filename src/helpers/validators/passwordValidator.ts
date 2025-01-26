@@ -19,3 +19,14 @@ export const passwordValidationRules = {
     },
   };
   
+
+  /**
+ * Simple validation rules for password fields.
+ * Only ensures the password field is not left empty.
+ */
+export const requiredPasswordValidationRules = {
+  /**
+   * Ensures the password field is not left empty.
+   */
+  required: "La contraseña es requerida",
+};

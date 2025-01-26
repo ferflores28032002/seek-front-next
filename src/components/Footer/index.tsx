@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer className=" flex-grow-0">
       <MaxWidthWrapper>
-        <div className="border-t border-gray-200 dark:border-gray-500">
+        <div className="border-t border-gray-200 mt-5 dark:border-gray-500">
           <div className="pb-8 pt-16">
             <div className="flex justify-center">
               <Icons.logo className="h-12 w-auto" />

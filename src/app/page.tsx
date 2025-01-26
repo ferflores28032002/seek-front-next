@@ -11,7 +11,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
           Gestiona tus tareas fácilmente&nbsp;
           <span className="text-blue-600" id="cypress-title-home">
-            con seek
+            con Seek
           </span>
         </h1>
         <p

@@ -1,16 +1,16 @@
 "use client";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Icons } from "@/icons";
 import { useLogin } from "@/hooks/auth/useLogin";
+import { Icons } from "@/icons";
 
 import EmailInput from "@/components/EmailInputField";
 import PasswordInput from "@/components/PasswordInput";
+import { requiredPasswordValidationRules } from "@/helpers/validators/passwordValidator";
 
 interface LoginFormInputs {
   email: string;
@@ -38,10 +38,7 @@ const Page = () => {
             Iniciar sesión en tu cuenta
           </h1>
           <Link
-            className={buttonVariants({
-              variant: "link",
-              className: "gap-1.5",
-            })}
+            className={buttonVariants({ variant: "link", className: "gap-1.5"})}
             href="/register"
           >
             Crear una cuenta
@@ -59,6 +56,7 @@ const Page = () => {
               <PasswordInput
                 name="password"
                 register={register}
+                validationRules={requiredPasswordValidationRules}
                 error={errors.password?.message}
               />
               <Button
