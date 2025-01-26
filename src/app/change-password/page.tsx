@@ -4,14 +4,12 @@ import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Loading } from "@/components";
+import { Button } from "@/components/ui/button";
 
 import { usePasswordChange } from "@/hooks/auth/usePasswordChange";
 
-import { cn } from "@/lib/utils";
+import PasswordInput from "@/components/PasswordInput";
 import { Icons } from "@/icons";
 
 interface ChangePasswordFormInputs {
@@ -53,26 +51,11 @@ const PasswordChangePage: React.FC = () => {
         <div className="grid gap-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-2">
-              <div className="grid gap-1 py-2">
-                <Label htmlFor="password">Contraseña</Label>
-                <Input
-                  {...register("password", {
-                    required: "La contraseña es requerida",
-                  })}
-                  type="password"
-                  className={cn({
-                    "focus-visible:ring-red-500": errors.password,
-                  })}
-                  placeholder="Contraseña"
-                  autoComplete="current-password"
-                />
-                {errors.password && (
-                  <p className="text-sm text-red-500">
-                    {errors.password.message}
-                  </p>
-                )}
-              </div>
-
+              <PasswordInput
+                name="password"
+                register={register}
+                error={errors.password?.message}
+              />
               <Button
                 type="submit"
                 isLoading={mutation.isPending}

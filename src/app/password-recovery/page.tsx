@@ -3,12 +3,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 import { useForgotPassword } from "@/hooks/auth/useForgotPassword";
 
-import { cn } from "@/lib/utils";
+import EmailInput from "@/components/EmailInputField";
 import { Icons } from "@/icons";
 
 interface LoginFormInputs {
@@ -41,35 +39,11 @@ const Page = () => {
         <div className="grid gap-6">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-2">
-              <div className="grid gap-1 py-2">
-                <Label htmlFor="email">Correo electrónico</Label>
-                <Input
-                  {...register("email", {
-                    required: "El correo electrónico es requerido",
-                    pattern: {
-                      value:
-                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-                      message: "Formato de correo electrónico inválido",
-                    },
-                    validate: {
-                      notDisposable: (value) =>
-                        !/^(?=.*@(?:10minutemail\.com|guerrillamail\.com|mailinator\.com))/.test(
-                          value
-                        ) || "No se permiten correos electrónicos temporales",
-                    },
-                  })}
-                  className={cn({
-                    "focus-visible:ring-red-500": errors.email,
-                  })}
-                  placeholder="tucorreo@ejemplo.com"
-                  type="email"
-                  autoComplete="email"
-                />
-                {errors.email && (
-                  <p className="text-sm text-red-500">{errors.email.message}</p>
-                )}
-              </div>
-
+              <EmailInput
+                register={register}
+                error={errors.email?.message}
+                name="email"
+              />
               <Button
                 type="submit"
                 isLoading={mutation.isPending}
