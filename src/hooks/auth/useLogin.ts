@@ -6,12 +6,13 @@ import { useRouter } from "next/navigation";
 
 import Swal from "sweetalert2";
 import {
+  ApiError,
   LoginPayload,
   LoginResponse,
   LoginService,
 } from "../../services/auth/LoginService";
 
-type UseLogin = () => UseMutationResult<LoginResponse, Error, LoginPayload>;
+type UseLogin = () => UseMutationResult<LoginResponse, ApiError, LoginPayload>;
 
 export const useLogin: UseLogin = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ export const useLogin: UseLogin = () => {
     setUser: state.setUser,
   }));
 
-  return useMutation<LoginResponse, Error, LoginPayload>({
+  return useMutation<LoginResponse, ApiError, LoginPayload>({
     mutationFn: LoginService,
     onSuccess: (data: LoginResponse) => {
       localStorage.setItem("authToken", data.token);
@@ -32,12 +33,11 @@ export const useLogin: UseLogin = () => {
       });
       router.push("/tasks");
     },
-    onError: (error: Error) => {
-      console.log(error)
+    onError: (error: ApiError) => {
       Swal.fire({
         icon: "error",
         title: "Ups...",
-        text: "Usuario o contraseña incorrectos",
+        text: error.response.data.message,
         confirmButtonText: "Aceptar",
         confirmButtonColor: "#3085d6",
       });

@@ -10,6 +10,15 @@ export interface LoginResponse {
   user:  User;
 }
 
+export interface ApiError {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+  message: string;
+}
+
 export interface User {
   id:         number;
   email:      string;
