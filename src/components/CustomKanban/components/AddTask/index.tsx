@@ -1,7 +1,7 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { CardType } from "../..";
-
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,10 +10,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import DescriptionTextarea from "@/components/DescriptionTextarea";
+import NameInput from "@/components/NameInput";
+import AddKanbanTaskButton from "../AddKanbanTaskButton";
 
 import { useCreateTask } from "@/hooks/task/useCreateTask";
-import { motion } from "framer-motion";
-import { FiPlus } from "react-icons/fi";
+import { CardType } from "../..";
+
 
 type AddCardProps = {
   column: string;
@@ -21,101 +24,84 @@ type AddCardProps = {
   setCards: Dispatch<SetStateAction<CardType[]>>;
 };
 
-const AddTask = (props: AddCardProps) => {
-  const { column, columnId, setCards } = props;
+type FormData = {
+  title: string;
+  description: string;
+};
 
-  const mutate = useCreateTask();
-
+const AddTask = ({ column, columnId, setCards }: AddCardProps) => {
+  const { mutate, error } = useCreateTask();
   const [open, setOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    status: column,
-  });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!formData.title.trim().length) return;
-
+  const onSubmit = (data: FormData) => {
     const newCard: CardType = {
       column,
-      title: formData.title.trim(),
+      title: data.title.trim(),
       id: Math.random().toString(),
-      description: formData.description.trim(),
+      description: data.description.trim(),
     };
-
-    setCards((prev) => [...prev, newCard]);
-
-    mutate.mutate({
-      title: formData.title,
-      description: formData.description,
-      statusId: parseInt(columnId),
-    });
-
-    setFormData({ title: "", description: "", status: column });
-    setOpen(false);
+    mutate(
+      {
+        title: data.title,
+        description: data.description,
+        statusId: parseInt(columnId),
+      },
+      {
+        onSuccess: () => {
+          setCards((prev) => [...prev, newCard]);
+          reset();
+          setOpen(false);
+        },
+      }
+    );
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <motion.button
-          layout
-          className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
-        >
-          <span>Add Task</span>
-          <FiPlus />
-        </motion.button>
+        <AddKanbanTaskButton onClick={() => setOpen(true)} />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add New Task</DialogTitle>
+          <DialogTitle>
+            Agregar Tarea a la columna{" "}
+            <span className="font-semibold">{column}</span> <br />
+            {error?.response?.data?.message && (
+              <span className="mt-2 text-sm text-red-500 font-medium">
+                {error.response.data.message}
+              </span>
+            )}
+          </DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm text-neutral-50">Title</label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              placeholder="Task title"
-              className="w-full rounded border border-neutral-500 bg-neutral-800 p-2 text-neutral-50"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm text-neutral-50">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              placeholder="Task description"
-              className="w-full rounded border border-neutral-500 bg-neutral-800 p-2 text-neutral-50"
-            />
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <NameInput
+            name="title"
+            register={register}
+            error={errors.title?.message}
+          />
+          <DescriptionTextarea
+            name="description"
+            register={register}
+            error={errors.description?.message}
+          />
           <DialogFooter>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="px-3 py-2 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
+            <Button
+              variant="destructive"
+              onClick={() => {
+                reset();
+                setOpen(false);
+              }}
             >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="rounded bg-violet-500 px-3 py-2 text-xs text-neutral-50 transition-colors hover:bg-violet-600"
-            >
-              Add Task
-            </button>
+              Cancelar
+            </Button>
+            <Button type="submit">Crear Tarea</Button>
           </DialogFooter>
         </form>
       </DialogContent>

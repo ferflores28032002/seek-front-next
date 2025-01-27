@@ -2,13 +2,14 @@ import { useMutation, UseMutationResult, useQueryClient } from "@tanstack/react-
 
 import { TaskPayload, TaskResponse } from "@/services/task/CreateTaskService";
 import { EditTaskService } from "@/services/task/EditTaskService";
+import { ApiError } from "@/services/auth/LoginService";
 
 type EditTaskPayload = {
   id: number;
   payload: TaskPayload;
 };
 
-export const useEditTask = (): UseMutationResult<TaskResponse, Error, EditTaskPayload> => {
+export const useEditTask = (): UseMutationResult<TaskResponse, ApiError, EditTaskPayload> => {
 
   const queryClient = useQueryClient();
   return useMutation({
@@ -16,7 +17,7 @@ export const useEditTask = (): UseMutationResult<TaskResponse, Error, EditTaskPa
     onSuccess: (data) => {
       queryClient.invalidateQueries({queryKey: ["tasks"]});
     },
-    onError: (error: Error) => {
+    onError: (error: ApiError) => {
       console.error("Error editing task:", error.message);
     },
   });

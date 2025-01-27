@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-
-import { Loader2, XCircle } from "lucide-react";
-
-import { buttonVariants } from "../ui/button";
-import { useVerifyEmail } from "@/hooks/auth/useVerifyEmail";
 import { useEffect } from "react";
+
+
+import AccountVerificationError from "./components/AccountVerificationError";
+import AccountVerificationPending from "./components/AccountVerificationPending";
+import AccountVerificationSuccess from "./components/AccountVerificationSuccess";
+
+import { useVerifyEmail } from "@/hooks/auth/useVerifyEmail";
 
 interface VerifyEmailProps {
   token: string;
@@ -21,49 +21,15 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
   }, [token]);
 
   if (isError) {
-    return (
-      <div className="flex flex-col items-center gap-2 mb-12 justify-center">
-        <XCircle className="h-8 w-8 text-red-600" />
-        <h3 className="font-semibold text-xl tex-center">Hubo un problema</h3>
-        <p className="text-muted-foreground text-sm text-center">
-          Este token no es válido o podría estar vencido. Inténtalo de nuevo.
-        </p>
-      </div>
-    );
+    return <AccountVerificationError />;
   }
 
   if (isSuccess) {
-    return (
-      <div className="flex flex-col items-center justify-center mb-12">
-        <div className="relative mb-4 h-60 w-60 text-muted-foreground">
-          <Image src="/hippo-email-sent.png" fill alt="the email was sent" />
-        </div>
-
-        <h3 className="font-semibold text-2xl text-center">
-          Correo electrónico verificado
-        </h3>
-        <p className="text-muted-foreground text-center mt-1">
-          Gracias por verificar su correo electrónico.
-        </p>
-        <Link className={buttonVariants({ className: "mt-4" })} href="/login">
-          Iniciar sesión
-        </Link>
-      </div>
-    );
+    return <AccountVerificationSuccess />;
   }
 
   if (isPending) {
-    return (
-      <div className="flex flex-col items-center gap-2 mb-12">
-        <Loader2 className="animate-spin h-8 w-8 text-zinc-300" />
-        <h3 className="font-semibold text-xl text-center">
-          Verificando tu correo electrónico....
-        </h3>
-        <p className="text-muted-foreground text-sm">
-          Por favor, espera un momento.
-        </p>
-      </div>
-    );
+    return <AccountVerificationPending />;
   }
 };
 

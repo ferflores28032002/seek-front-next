@@ -6,6 +6,7 @@ export type Status = {
   description: string;
   createdAt: string;
   updatedAt: string;
+  color: string;
 };
 
 export type Creator = {

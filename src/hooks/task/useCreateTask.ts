@@ -1,8 +1,9 @@
 import { useMutation, UseMutationResult, useQueryClient } from "@tanstack/react-query";
 
+import { ApiError } from "@/services/auth/LoginService";
 import { CreateTaskService, TaskPayload, TaskResponse } from "@/services/task/CreateTaskService";
 
-export const useCreateTask = (): UseMutationResult<TaskResponse, Error, TaskPayload> => {
+export const useCreateTask = (): UseMutationResult<TaskResponse, ApiError, TaskPayload> => {
 
   const queryClient = useQueryClient();
 
@@ -11,7 +12,7 @@ export const useCreateTask = (): UseMutationResult<TaskResponse, Error, TaskPayl
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
-    onError: (error: Error) => {
+    onError: (error: ApiError) => {
       console.error("Error creating task:", error.message);
     },
   });

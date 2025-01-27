@@ -4,12 +4,16 @@ import { useMutation } from "@tanstack/react-query";
 
 import { useRouter } from "next/navigation";
 
-import { EmailPayload, ForgotPasswordService } from "@/services/auth/ForgotPasswordService";
+import {
+  EmailPayload,
+  ForgotPasswordService,
+} from "@/services/auth/ForgotPasswordService";
+import { ApiError } from "@/services/auth/LoginService";
 
 export const useForgotPassword = () => {
   const router = useRouter();
 
-  return useMutation<string, Error, EmailPayload>({
+  return useMutation<string, ApiError, EmailPayload>({
     mutationFn: ForgotPasswordService,
     onSuccess: () => {
       Swal.fire({
@@ -22,11 +26,11 @@ export const useForgotPassword = () => {
         router.push("/login");
       });
     },
-    onError: () => {
+    onError: (error:ApiError) => {
       Swal.fire({
         icon: "error",
         title: "Ups...",
-        text: "Algo salió mal, intenta de nuevo",
+        text: error.response.data.message,
         confirmButtonText: "Aceptar",
         confirmButtonColor: "#3085d6",
       });

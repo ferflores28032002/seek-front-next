@@ -11,6 +11,7 @@ import {
 import { useEditTask } from "@/hooks/task/useEditTask";
 import { AddTask, CardTask, DropIndicator } from "../";
 import { CardType } from "../..";
+import { Badge } from "@/components/ui/badge";
 
 type ColumnProps = {
   title: string;
@@ -127,14 +128,13 @@ const TaskColumn = (props: ColumnProps) => {
     clearHighlights();
     setActive(false);
   };
-
-  console.log(headingColor,'headingColor')
-
   const filteredCards = cards.filter((c) => c.column === column);
   return (
     <div className="w-56 shrink-0">
       <div className="mb-3 flex items-center justify-between">
-        <h3 className={`font-medium ${headingColor}`}>{title}</h3>
+        <Badge className={`${headingColor} dark:bg-transparent px-2 py-1`}>
+          {title}
+        </Badge>
         <span className="rounded text-sm dark:text-neutral-400 text-black">
           {filteredCards.length}
         </span>
@@ -144,7 +144,7 @@ const TaskColumn = (props: ColumnProps) => {
         onDrop={handleDragEnd}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        className={`h-full w-full transition-colors shadow-[0_8px_20px_rgba(0,0,0,0.05)] p-3 overflow-hidden ${
+        className={`h-full w-full transition-colors shadow-[0_8px_20px_rgba(0,0,0,0.05)] p-3 overflow-y-auto scrollbar-hide ${
           active
             ? "bg-white dark:bg-neutral-800/50"
             : "bg-white dark:bg-neutral-800/0"
