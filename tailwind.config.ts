@@ -19,6 +19,10 @@ const config = {
     },
     extend: {
       colors: {
+        canceled: "#EF4444", // Cancelada (Rojo)
+        inProgress: "#3B82F6", // En progreso (Azul)
+        completed: "#22C55E", // Completada (Verde)
+        pending: "#EAB308", // Pendiente (Amarillo)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
