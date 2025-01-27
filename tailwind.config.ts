@@ -8,6 +8,12 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  safelist: [
+    'text-canceled',
+    'text-inProgress',
+    'text-completed',
+    'text-pending',
+  ],
   prefix: "",
   theme: {
     container: {
