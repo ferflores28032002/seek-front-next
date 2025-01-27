@@ -1,23 +1,61 @@
-# Trece software - NEXT.JS - NODE.JS (TYPESCRIPT)
+# Seek Task - NEXT.JS | REACT QUERY | TYPESCRIPT
 
-**Demo:** 
+**Demo**: [https://seek-app-next.netlify.app](https://seek-app-next.netlify.app)  
+*Regístrate, verifica tu correo e inicia sesión para explorar todas las funcionalidades.*
 
-
+---
 
 ## Resumen
 
-El proyecto utiliza Next.js, SWR para la obtención de datos, TypeScript para tipado estático y Tailwind CSS para estilización junto con ui.shadcn. Cypress se utiliza para pruebas de extremo a extremo.
+**Seek Task** es una aplicación web moderna y eficiente para la gestión de tareas. Desarrollada con las mejores prácticas y tecnologías actuales, esta aplicación implementa un tablero Kanban para organizar tareas y sus estados. El proyecto está desplegado en Netlify y ha sido probado con Cypress para garantizar calidad y confiabilidad.  
 
-La aplicación está desplegada en Netlify y se puede acceder [aquí]
+### Tecnologías utilizadas:
+- **Frontend**: [Next.js](https://nextjs.org/), [React Query](https://tanstack.com/query), [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.dev/), [Recharts](https://recharts.org/)  
+- **Backend**: Integrado con servicios de Node.js y TypeScript.
+- **Pruebas**: [Cypress](https://www.cypress.io/) para tests end-to-end.
+- **Despliegue**: [Netlify](https://www.netlify.com/)
 
-## Empezando
+---
 
-Para ejecutar el servidor de desarrollo, utiliza el siguiente comando:
+## Características principales
+
+- **Gestión de tareas con Kanban**: Organiza tareas fácilmente y cambia su estado con solo arrastrarlas.  
+- **React Query**: Sincronización avanzada de datos en tiempo real y manejo eficiente de estados asíncronos.  
+- **Estilización moderna**: Diseños atractivos y responsivos con Tailwind CSS y shadcn/ui.  
+- **Pruebas de extremo a extremo**: Calidad garantizada mediante Cypress.  
+- **Despliegue rápido y confiable**: Implementación en Netlify para un acceso global.  
+
+
+# Proyecto - Guía de Configuración
+
+## Configurar Variables de Entorno
+
+1. Copia el archivo `.env.template` y renómbralo a `.env`.
+2. Completa los valores necesarios en el archivo `.env`.
+
+## Compilar el Proyecto
+
+Ejecuta el siguiente comando para compilar el código:
+
+```bash
+yarn build
 ```
+
+
+
+### 6. Ejecutar en modo desarrollo:
+
+```bash
 yarn dev
+
+```
+### Ejecutar en modo producción:
+
+```bash
+yarn start
+
 ```
 
-Luego, abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el resultado.
 
 ## Pruebas de Extremo a Extremo con Cypress
 
@@ -66,6 +104,14 @@ En resumen, React Query es una opción excelente cuando se necesita una solució
 ## ¿Por qué Tailwind CSS y UI.SHADCN?
 
 Tailwind CSS es un framework de CSS de utilidades que simplifica el proceso de estilización al proporcionar un conjunto de clases de utilidades predefinidas. Promueve la consistencia y el desarrollo rápido al tiempo que permite una personalización fácil. Además, su función de purga garantiza que solo se incluya el CSS necesario en la compilación final, optimizando el rendimiento.
+
+## ¿Por qué Recharts?
+
+Recharts es una biblioteca de gráficos diseñada específicamente para React, ideal para crear gráficos interactivos y personalizados con facilidad. Basada en D3.js, combina el poder de visualización de datos de esta librería con una API amigable y modular que se adapta al modelo de componentes de React. Su configuración es sencilla, con gráficos como líneas, barras y pasteles que pueden personalizarse fácilmente mediante props. 
+
+## ¿Por qué Framer Motion?
+
+Framer Motion es una biblioteca de animaciones diseñada específicamente para React, que destaca por su simplicidad, flexibilidad y rendimiento optimizado. Su API intuitiva permite implementar animaciones declarativas directamente en los componentes, con soporte para transiciones complejas, keyframes, y gestos como arrastre
 
 ## Conclusión
 
