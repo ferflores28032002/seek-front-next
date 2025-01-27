@@ -115,4 +115,4 @@ Framer Motion es una biblioteca de animaciones diseñada específicamente para R
 
 ## Conclusión
 
-El proyecto ammper-app aprovecha tecnologías modernas y mejores prácticas para ofrecer una aplicación web robusta y de alto rendimiento. Al utilizar Next.js, SWR, Cypress, Tailwind CSS y TypeScript, el proyecto logra un equilibrio entre la productividad del desarrollador y la experiencia del usuario.
+El proyecto Seek Task se ha diseñado utilizando tecnologías modernas y las mejores prácticas de desarrollo, garantizando una aplicación web robusta, escalable y de alto rendimiento. Basado en Next.js, con la gestión eficiente de datos a través de React Query, pruebas automatizadas mediante Cypress, diseño elegante y responsivo con Tailwind CSS, y tipado estático proporcionado por TypeScript, el proyecto equilibra de manera excepcional la productividad del equipo de desarrollo con una experiencia de usuario impecable. Seek Task es un claro ejemplo de innovación y excelencia en desarrollo web.
