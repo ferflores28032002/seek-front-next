@@ -7,7 +7,7 @@ import Link from "next/link";
 import Loading from "../Loading";
 import { buttonVariants } from "../ui/button";
 import Board from "./components/Board";
-import { useRedirectIfUnauthenticated } from "@/app/useRedirectIfUnauthenticated";
+import { useRedirectIfUnauthenticated } from "@/hooks/shared/useRedirectIfUnauthenticated";
 
 export interface ColumnType {
   name: string;

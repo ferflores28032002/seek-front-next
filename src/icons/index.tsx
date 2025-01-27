@@ -1,5 +1,27 @@
 import { LucideProps } from "lucide-react";
 
+/**
+ * Icons object containing various SVG icons.
+ * 
+ * @property {Function} logo - A function that returns an SVG element representing the logo.
+ * This function accepts `LucideProps` as props, which are spread onto the SVG element.
+ * 
+ * The `logo` function creates an SVG with a viewBox of "0 0 512 512" and contains several
+ * `path` and `ellipse` elements to form the logo graphic. The `props` parameter allows
+ * customization of the SVG element, such as setting its size, color, and other attributes.
+ * 
+ * Example usage:
+ * 
+ * ```tsx
+ * import { Icons } from './icons';
+ * 
+ * const MyComponent = () => (
+ *   <div>
+ *     <Icons.logo width={50} height={50} fill="blue" />
+ *   </div>
+ * );
+ * ```
+ */
 export const Icons = {
   logo: (props: LucideProps) => (
     <svg {...props} viewBox="0 0 512 512">

@@ -20,7 +20,7 @@ import { useListTaks } from "@/hooks/task/useListTask";
 
 import { COLORS } from "@/constants/colors";
 import { CheckSquare, LayoutGrid } from "lucide-react";
-import { useRedirectIfUnauthenticated } from "../useRedirectIfUnauthenticated";
+import { useRedirectIfUnauthenticated } from "../../hooks/shared/useRedirectIfUnauthenticated";
 
 const TaskPieChart: React.FC = () => {
   const { data: tasks, isLoading } = useListTaks();
@@ -53,11 +53,14 @@ const TaskPieChart: React.FC = () => {
             Distribución de Tareas por Estado
           </CardTitle>
           <div className="flex gap-2">
-            <Link href="/kanban" className={`${buttonVariants()} hidden sm:flex`}>
+            <Link
+              href="/kanban"
+              className={`${buttonVariants()} hidden sm:flex`}
+            >
               <LayoutGrid className="h-[1.2rem] w-[1rem] text-white" />
             </Link>
             <Link href="/tasks" className={buttonVariants()}>
-              <CheckSquare  className="h-[1.2rem] w-[1rem] text-white" />
+              <CheckSquare className="h-[1.2rem] w-[1rem] text-white" />
             </Link>
           </div>
         </div>

@@ -1,13 +1,5 @@
 import api from "../axiosInstance";
-
-export type Status = {
-  id: number;
-  name: string;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-  color: string;
-};
+import { Status } from "../StatusTask/ListStatusService";
 
 export type Creator = {
   id: number;
@@ -32,6 +24,16 @@ export type Task = {
   creator: Creator;
 };
 
+/**
+ * Fetches a list of tasks from the API.
+ *
+ * This service function makes an HTTP GET request to the "/task" endpoint
+ * to retrieve an array of tasks. It is designed to be used in conjunction
+ * with React Query hooks for efficient data fetching and caching in a React
+ * application.
+ *
+ * @returns {Promise<Task[]>} A promise that resolves to an array of Task objects.
+ */
 export const ListTaskService = async (): Promise<Task[]> => {
   const response = await api.get<Task[]>("/task");
   return response.data;

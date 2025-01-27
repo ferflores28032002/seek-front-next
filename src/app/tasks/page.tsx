@@ -21,7 +21,7 @@ import { useListTaks } from "@/hooks/task/useListTask";
 import { TasksColumn } from "@/helpers/Task/TaksColumn";
 import { ApiError } from "@/services/auth/LoginService";
 import { BarChart, LayoutGrid } from "lucide-react";
-import { useRedirectIfUnauthenticated } from "../useRedirectIfUnauthenticated";
+import { useRedirectIfUnauthenticated } from "../../hooks/shared/useRedirectIfUnauthenticated";
 
 const Page = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
